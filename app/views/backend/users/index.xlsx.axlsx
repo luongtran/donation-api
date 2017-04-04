@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  green_cell =  s.add_style  bg_color: "38B682", fg_color: "E9FFF2", sz: 16, alignment: { horizontal: :center }
+  center_cell = s.add_style alignment: { horizontal: :center }
+  wb.add_worksheet(name: "Users") do |sheet|
+    sheet.add_row ['ID','Full name','Email','Register','Number login count','Last login IP'],
+      style: [green_cell,green_cell,green_cell,green_cell,green_cell,green_cell]
+    @users.each do |user|
+      sheet.add_row [user.id, user.full_name, user.email, user.created_at.strftime("%d/%b/%Y"),user.sign_in_count, user.last_sign_in_ip],
+      style: [center_cell]
+    end
+  end
+end

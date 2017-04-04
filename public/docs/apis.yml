@@ -1,0 +1,457 @@
+---
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version: "1.0.0"
+  title: Billionaires Jet API
+
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+host: localhost:3000
+basePath: /api/v1
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+
+################################################################################
+#                                   Tags                                       #
+################################################################################
+tags:
+  - name: Authenticate
+  - name: CharityLocation
+  - name: Charity
+  - name: DonationCategory
+  - name: PackageCost
+
+################################################################################
+#                                  Security                                    #
+################################################################################
+securityDefinitions:
+  access-token:
+    type: apiKey
+    in: header
+    name: access-token
+  client:
+    type: apiKey
+    in: header
+    name: client
+  uid:
+    type: apiKey
+    in: header
+    name: uid
+################################################################################
+#                                   Parameters                                 #
+################################################################################
+parameters:
+  user-id:
+    name: user-id
+    in: path
+    description: The user identifier number
+    type: integer
+    required: true
+  tag-name:
+    name: tag-name
+    in: path
+    description: Tag name
+    type: string
+    required: true
+
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /auth:
+    post:
+      tags:
+        - Authenticate
+      summary: Register with email
+      parameters:
+        - name: fullname
+          in: formData
+          required: true
+          type: string
+          description: test
+        - name: email
+          in: formData
+          required: true
+          type: string
+          description: test
+        - name: password
+          in: formData
+          type: string
+          format: password
+          description: test
+          required: true
+        - name: password_confirmation
+          in: formData
+          type: string
+          format: password
+          description: test
+          required: true
+        - name: device[os]
+          in: formData
+          description: Device os, accepted value are android, ios
+        - name: device[token]
+          in: formData
+          description: Device token
+      responses:
+        200:
+          description: OK
+          headers:
+
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+    delete:
+      tags:
+        - Authenticate
+      summary: Delete account
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+              _access-token:
+                $ref: '#/definitions/AccessToken'
+  /auth/sign_in:
+    post:
+      summary: Sign in
+      tags:
+        - Authenticate
+      description: See the authenticated user's feed.
+      parameters:
+        - name: email
+          in: formData
+          description: The email of user
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: The password of user
+          required: true
+          type: string
+          format: password
+        - name: device[os]
+          in: formData
+          description: Device os, accepted value are android, ios
+        - name: device[token]
+          in: formData
+          description: Device token
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              http_status_code:
+                type: integer
+              data:
+                $ref: '#/definitions/User'
+        "401":
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  example: "Invalid login credentials. Please try again."
+  /auth/password:
+    post:
+      tags:
+        - Authenticate
+      summary: Reset user password
+      hint: Facebook api V2 required both access-token and user-id, url ""
+      parameters:
+        - name: email
+          in: formData
+          description: The email of the user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              http_status_code:
+                type: integer
+              data:
+                type: object
+  /auth/sign_out:
+    delete:
+      tags:
+        - Authenticate
+      summary: Log out
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: os
+          in: formData
+          description: Current device os, accepted ios,android
+          type: string
+        - name: device_token
+          in: formData
+          description: Current device token
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+  /profile:
+    get:
+      tags:
+        - Profile
+      summary: Profile
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+    put:
+      tags:
+        - Profile
+      summary: Update Profile
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: user[name]
+          in: formData
+          description: The name of user
+          required: true
+          type: string
+        - name: user[surname]
+          in: formData
+          description: The surname of user
+          type: string
+        - name: user[phone]
+          in: formData
+          description: The phone of user
+          type: string
+        - name: user[company_name]
+          in: formData
+          description: The company_name of user
+          type: string
+        - name: user[organisation]
+          in: formData
+          description: The organisation of user
+          type: string
+        - name: user[website]
+          in: formData
+          description: The website of user
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+  /charity_locations:
+    get:
+      tags:
+        - CharityLocation
+      summary: listing Charity Locations
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              data:
+                type: object
+                properties:
+                  charity_locations:
+                    type: array
+                    items:
+                      $ref: '#/definitions/CharityLocation'
+  /charities:
+    get:
+      tags:
+        - Charity
+      summary: Get all Charities by Location
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: charity_location_id
+          in: queryString
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              charity_locations:
+                type: array
+                items:
+                  $ref: '#/definitions/Charity'
+  /donation_categories:
+    get:
+      tags:
+        - DonationCategory
+      summary: Get What you want to donate
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              donation_categories:
+                type: array
+                items:
+                  $ref: '#/definitions/DonationCategory'
+
+
+  /package_costs:
+    get:
+      tags:
+        - PackageCost
+      summary: Get Package size cost
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              package_costs:
+                type: array
+                items:
+                  $ref: '#/definitions/PackageCost'
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      email:
+        type: string
+      fullname:
+        type: string
+      phone: 
+        type: string
+      last_sign_in_at:
+        type: time
+  Attachment:
+    type: object
+    properties:
+      id:
+        type: integer
+      thumb:
+        type: string
+      medium:
+        type: string
+      origin:
+        description: Origin avatar url
+        type: string
+      content_type:
+        type: string
+  CharityLocation:
+    type: object
+    properties:
+      id:
+        type: integer
+      location_name:
+        type: string
+      status:
+        type: boolean
+  Charity:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      charity_location_id:
+        type: integer
+      status:
+        type: boolean
+  DonationCategory:
+    type: object
+    properties:
+      id:
+        type: integer
+      cat_name:
+        type: string
+      status:
+        type: boolean
+  PackageCost:
+    type: object
+    properties:
+      id:
+        type: integer
+      package_size:
+        type: string
+      cost_per_carton:
+        type: float

@@ -1,0 +1,19 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    = favicon_link_tag 'favicon.png'
+    %title Private Flights - Rent a Jet - Empty Leg Flights
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = favicon_link_tag 'logo.png'
+    %meta{name: "viewport", content: "width=device-width", "initial-scale": 1, "shrink-to-fit": "no"}
+    %meta{"http-equiv": "x-ua-compatible", "content": "ie=edge"}
+  %body
+    .site-wrapper
+      .site-wrapper-inner
+        .col-md-6.col-md-offset-3
+          = render 'shared/flash_messages'
+        = yield
+  = javascript_include_tag 'application'

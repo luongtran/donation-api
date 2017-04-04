@@ -1,0 +1,16 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title User management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Users', backend_users_path
+      %li.active All users
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3 Edit user
+      = render partial: 'form'

@@ -1,0 +1,2 @@
+class CourierCost < ApplicationRecord
+end

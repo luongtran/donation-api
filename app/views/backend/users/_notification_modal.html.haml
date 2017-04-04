@@ -1,0 +1,15 @@
+.push-notification-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      = form_tag push_notification_backend_user_path(@user), method: :post, remote: true do
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4.modal-title Send notification to #{@user.full_name}
+        .modal-body
+          .form-group
+            %label Message
+            = text_field_tag :message, nil, class: 'form-control'
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          %button.btn.btn-primary{:type => "submit"} Send

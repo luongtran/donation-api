@@ -1,0 +1,45 @@
+.navbar-default.sidebar.nicescroll{:role => "navigation"}
+  .sidebar-nav.navbar-collapse
+    %ul#side-menu.nav
+      %li.sidebar-search.hidden-sm.hidden-md.hidden-lg
+        .input-group.custom-search-form
+          %input.form-control{:placeholder => "Search...", :type => "text"}/
+          %span.input-group-btn
+            %button.btn.btn-default{:type => "button"}
+              %i.fa.fa-search
+        / /input-group
+      %li.nav-small-cap Main Menu
+      %li
+        = link_to backend_dashboard_path do
+          %i.glyphicon.glyphicon-fire.fa-fw
+          Dashboard
+      - if user_signed_in?
+        - if can? :read, :user
+          %li
+            = link_to backend_users_path do
+              %i.fa.fa-user-circle.fa-fw
+              Users
+        - if can? :read, :jet
+          %li
+            = link_to backend_jets_path do
+              %i.fa.fa-plane.fa-fw
+              Jets
+        - if can? :read, :jet_type
+          %li
+            = link_to backend_jet_types_path do
+              %i.fa.fa-fighter-jet.fa-fw
+              Jet types
+        - if can? :read, :state
+          %li
+            = link_to backend_states_path do
+              %i.fa.fa-location-arrow.fa-fw
+              States
+        - if can? :read, :car
+          %li
+            = link_to backend_cars_path do
+              %i.fa.fa-car.fa-fw
+              Cars
+          %li
+            = link_to backend_car_bookings_path do
+              %i.fa.fa-calendar.fa-fw
+              Car bookings

@@ -1,0 +1,2 @@
+class DonationCategory < ApplicationRecord
+end

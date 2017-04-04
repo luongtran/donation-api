@@ -1,0 +1,10 @@
+%h2.text-center Login to Dashboard
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: 'loginform'}) do |f|
+  .form-inputs
+    = f.input :email, required: true, autofocus: true
+    = f.input :password, required: true
+    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+  .btn-group{style: "width: 100%"}
+    = link_to  "Register", new_user_registration_path, class: "btn btn-default", style: "width: 40%"
+    = f.button :submit, "Login", class: 'btn btn-success btn-block', style: "width: 60%"
+= render "devise/shared/links"

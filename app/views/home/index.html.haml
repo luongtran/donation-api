@@ -1,0 +1,32 @@
+.cover-container
+  .masthead.clearfix
+    .inner
+      %h3.masthead-brand BillionairesJet
+      %nav.nav.nav-masthead
+        %a.nav-link.active{:href => "#"} Home
+        %a.nav-link{:href => "/documentation"} Documents
+        - if user_signed_in?
+          = link_to 'Backend', backend_dashboard_path, class: 'nav-link'
+          %p
+            Logged in as
+            = succeed ',' do
+              %span.text-primary= current_user.email
+            = link_to "Sign out", destroy_user_session_path, class: 'text-warning', data:{ method: :delete, confirm: 'Are you sure to Logout ?' }
+        - else
+          %a.nav-link{:href => "/users/sign_in"} Login
+          %a.nav-link{:href => "/users/sign_up"} Register
+  .inner.cover
+    %h1.cover-heading Comming soon
+    %p.lead Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
+    - unless user_signed_in?
+      %p.links
+        %a.btn.btn-primary{:href => "/api/v1/auth/facebook?omniauth_window_type=inAppBrowser"} Login via Facebook
+        %a.btn.btn-success{:href => "/api/v1/auth/twitter?omniauth_window_type=inAppBrowser"} Login via Twitter
+  .mastfoot
+    .inner
+      %p
+        Copyright for
+        = succeed "," do
+          %a{:href => "http://billionairesjet.com"} BillionairesJet
+        = succeed "." do
+          %a{:href => "https://twitter.com/ngthanhquang"} @ngthanhquang
