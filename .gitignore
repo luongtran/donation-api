@@ -18,6 +18,7 @@
 config/database.yml
 /public/assets
 /public/system
+/public/documentation
 # simplecov coverage folder
 coverage
 # Ignore application configuration
