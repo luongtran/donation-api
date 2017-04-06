@@ -1,4 +1,4 @@
-class Api::V1::CharityController < Api::BaseController
+class Api::V1::CharitiesController < Api::BaseController
 	before_action :authenticate_user!, only: [:index]
 
 	def index
