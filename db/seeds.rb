@@ -22,7 +22,7 @@ CharityLocation.create(
   status: 1
   )
 CharityLocation.all.each do |location|
-  1..6.each do |i|
+  (1..6).each do |i|
     location.charities.create(
         name: "Test #{location.id} - #{i}",
         status: true
