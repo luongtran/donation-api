@@ -41,13 +41,11 @@ Rails.application.routes.draw do
 
       resources :charity_locations, only: [:index] do
         collection do
+          resources :charities
+          get 'charities' => 'charities#index' 
         end
       end
 
-      resources :charities, only: [:index] do
-        collection do
-        end
-      end
 
       resources :donation_categories, only: [:index] do
         collection do

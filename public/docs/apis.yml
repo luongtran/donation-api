@@ -311,7 +311,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/CharityLocation'
-  /charities:
+  /charity_locations/charities:
     get:
       tags:
         - Charity
