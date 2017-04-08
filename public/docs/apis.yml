@@ -468,7 +468,7 @@ paths:
                 type: string
               http_status_code:
                 type: integer
-              addresses:
+              address:
                 type: object
                 items:
                   $ref: '#/definitions/Address'
@@ -520,10 +520,200 @@ paths:
                 type: string
               http_status_code:
                 type: integer
-              addresses:
+              address:
                 type: object
                 items:
                   $ref: '#/definitions/Address'
+  /donations:
+    get:
+      tags:
+        - Donations
+      summary: Get user donations
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              donations:
+                type: array
+                items:
+                  $ref: '#/definitions/Donation'
+    post:
+      tags:
+        - Donations
+      summary: Add new user donation
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: donation[charity_id]
+          in: formData
+          description: Charity
+          required: true
+          type: integer
+        - name: donation[package_cost_id]
+          in: formData
+          description: Package size
+          type: integer
+        - name: donation[address_id]
+          in: formData
+          description: The address
+          type: string
+          required: true
+        - name: donation[total_price]
+          in: formData
+          description: Total price
+          type: float
+        - name: donation[number_of_cartons]
+          in: formData
+          description: Number of cartons
+          type: integer
+        - name: donation[is_fragile]
+          in: formData
+          description: Is Fragile
+          type: boolean
+        - name: donation[wimo_task_id]
+          in: formData
+          description: Wimo task id
+          type: integer
+        - name: donation[donation_category_ids][]
+          in: formData
+          description: donation_categories
+          type: array
+        - name: donation[attachments_attributes[][file]]
+          in: formData
+          description: Donation images
+          type: file
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              donation:
+                type: object
+                items:
+                  $ref: '#/definitions/Donation'
+  /donations/{id}:
+    get:
+      tags:
+        - Donations
+      summary: Get Detail Donation
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: id
+          in: path
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              donation:
+                type: object
+                items:
+                  $ref: '#/definitions/Donation'
+    put:
+      tags:
+        - Donations
+      summary: Update donation
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: donation[charity_id]
+          in: formData
+          description: Charity
+          required: true
+          type: integer
+        - name: donation[package_cost_id]
+          in: formData
+          description: Package size
+          type: integer
+        - name: donation[address_id]
+          in: formData
+          description: The address
+          type: string
+          required: true
+        - name: donation[total_price]
+          in: formData
+          description: Total price
+          type: float
+        - name: donation[number_of_cartons]
+          in: formData
+          description: Number of cartons
+          type: integer
+        - name: donation[is_fragile]
+          in: formData
+          description: Is Fragile
+          type: boolean
+        - name: donation[wimo_task_id]
+          in: formData
+          description: Wimo task id
+          type: integer
+        - name: id
+          in: path
+          description: donation id
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              donation:
+                type: object
+                items:
+                  $ref: '#/definitions/Donation'
+    delete:
+      tags:
+        - Donations
+      summary: Delete Donation
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: id
+          in: path
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
@@ -610,6 +800,33 @@ definitions:
         type: float
       lon:
         type: float
+  Donation:
+    type: object
+    properties:
+      id:
+        type: integer
+      charity_id:
+        type: integer
+      package_cost_id:
+        type: integer
+      address_id:
+        type: integer
+      total_price:
+        type: float
+      number_of_cartons:
+        type: integer
+      is_fragile:
+        type: boolean
+      wimo_task_id:
+        type: integer
+      donation_categories:
+        type: array
+        items:
+          $ref: 'definitions/DonationCategory'
+      attachments:
+        type: array
+        items:
+          $ref: '#definitions/Attachment'
 
 
 

@@ -1,0 +1,35 @@
+%h1 Listing api_v1_donations
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Charity
+      %th Package cost
+      %th Address
+      %th Total price
+      %th Number of cartons
+      %th Is fragile
+      %th Wimo task
+      %th
+      %th
+      %th
+
+  %tbody
+    - @api_v1_donations.each do |api_v1_donation|
+      %tr
+        %td= api_v1_donation.user_id
+        %td= api_v1_donation.charity_id
+        %td= api_v1_donation.package_cost_id
+        %td= api_v1_donation.address_id
+        %td= api_v1_donation.total_price
+        %td= api_v1_donation.number_of_cartons
+        %td= api_v1_donation.is_fragile
+        %td= api_v1_donation.wimo_task_id
+        %td= link_to 'Show', api_v1_donation
+        %td= link_to 'Edit', edit_api_v1_donation_path(api_v1_donation)
+        %td= link_to 'Destroy', api_v1_donation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Donation', new_api_v1_donation_path

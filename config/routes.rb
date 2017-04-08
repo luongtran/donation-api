@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root to: 'home#index'
   devise_for :users
 
@@ -41,6 +42,8 @@ Rails.application.routes.draw do
         collection do
         end
       end
+
+      resources :donations
 
       resources :charity_locations, only: [:index] do
         collection do

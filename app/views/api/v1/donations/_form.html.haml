@@ -1,0 +1,15 @@
+= simple_form_for(@api_v1_donation) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :charity_id
+    = f.input :package_cost_id
+    = f.input :address_id
+    = f.input :total_price
+    = f.input :number_of_cartons
+    = f.input :is_fragile
+    = f.input :wimo_task_id
+
+  .form-actions
+    = f.button :submit

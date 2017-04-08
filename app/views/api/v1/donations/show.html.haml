@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @api_v1_donation.user_id
+%p
+  %b Charity:
+  = @api_v1_donation.charity_id
+%p
+  %b Package cost:
+  = @api_v1_donation.package_cost_id
+%p
+  %b Address:
+  = @api_v1_donation.address_id
+%p
+  %b Total price:
+  = @api_v1_donation.total_price
+%p
+  %b Number of cartons:
+  = @api_v1_donation.number_of_cartons
+%p
+  %b Is fragile:
+  = @api_v1_donation.is_fragile
+%p
+  %b Wimo task:
+  = @api_v1_donation.wimo_task_id
+
+= link_to 'Edit', edit_api_v1_donation_path(@api_v1_donation)
+\|
+= link_to 'Back', api_v1_donations_path

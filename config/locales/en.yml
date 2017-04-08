@@ -54,7 +54,27 @@ en:
   donation_categories:
     get:
       success: Get list donation categories successfully
-      failed: Get list donation  failed
+      failed: Get list donation categories failed
+  donations:
+    get:
+      success: Get list donations successfully
+      failed: Get list donations failed
+  donations:
+    detail:
+      success: Get detail donation successfully
+      failed: Get detail donation failed
+  donations:
+    update:
+      success: Update donation successfully
+      failed: Update donation failed
+  donations:
+    add:
+      success: Place donation successfully
+      failed: Place donation failed
+  donations:
+    delete:
+      success: Delete donation successfully
+      failed: Delete donation failed
   package_cost:
     get:
       success: Get list package costs successfully
