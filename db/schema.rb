@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404041547) do
+ActiveRecord::Schema.define(version: 20170408181740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20170404041547) do
     t.float    "lon"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "api_v1_donations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "charity_id"
+    t.integer  "package_cost_id"
+    t.integer  "address_id"
+    t.float    "total_price"
+    t.integer  "number_of_cartons"
+    t.boolean  "is_fragile"
+    t.integer  "wimo_task_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -75,6 +88,24 @@ ActiveRecord::Schema.define(version: 20170404041547) do
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "donation_categories_donations", id: false, force: :cascade do |t|
+    t.integer "donation_id",          null: false
+    t.integer "donation_category_id", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "charity_id"
+    t.integer  "package_cost_id"
+    t.integer  "address_id"
+    t.float    "total_price"
+    t.integer  "number_of_cartons"
+    t.boolean  "is_fragile"
+    t.integer  "wimo_task_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "package_costs", force: :cascade do |t|
