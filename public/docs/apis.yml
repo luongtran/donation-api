@@ -90,10 +90,9 @@ paths:
           format: password
           description: test
           required: true
-        - name: password_confirmation
+        - name: phone
           in: formData
           type: string
-          format: password
           description: test
           required: true
         - name: device[os]
