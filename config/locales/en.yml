@@ -20,6 +20,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  addresses:
+    get:
+      success: Get addresses successfully
+      failed: Get address failed
+  addresses:
+    post:
+      success: Add address successfully
+      failed: Add address failed
+  addresses:
+    put:
+      success: Update address successfully
+      failed: Update address failed
+  addresses:
+    delete:
+      success: Delete address successfully
+      failed: Delete address failed
   profiles:
     get:
       success: Get profile successfully
@@ -42,4 +58,4 @@ en:
   package_cost:
     get:
       success: Get list package costs successfully
-      failed: Get list package costs failed
+      failed: Get list package costs failed 

@@ -18,7 +18,7 @@ require 'wicked_pdf'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module BillionairesJet
+module DonationAPI
   class Application < Rails::Application
 
     config.middleware.insert_before 0, Rack::Cors do
