@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # ASSOCCIATIONS
   #=================================================================================================
   has_many :devices, dependent: :destroy
-  has_many :address, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   #=================================================================================================
   # VALIDATIONS
   #=================================================================================================

@@ -6,7 +6,7 @@ swagger: '2.0'
 ################################################################################
 info:
   version: "1.0.0"
-  title: Billionaires Jet API
+  title: Donation App API
 
 ################################################################################
 #                  Host, Base Path, Schemes and Content Types                  #
@@ -250,30 +250,14 @@ paths:
         client: []
         uid: []
       parameters:
-        - name: user[name]
+        - name: user[fullname]
           in: formData
           description: The name of user
           required: true
           type: string
-        - name: user[surname]
-          in: formData
-          description: The surname of user
-          type: string
         - name: user[phone]
           in: formData
           description: The phone of user
-          type: string
-        - name: user[company_name]
-          in: formData
-          description: The company_name of user
-          type: string
-        - name: user[organisation]
-          in: formData
-          description: The organisation of user
-          type: string
-        - name: user[website]
-          in: formData
-          description: The website of user
           type: string
       responses:
         '200':
@@ -386,6 +370,152 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/PackageCost'
+
+
+  /addresses:
+    get:
+      tags:
+        - Addresses
+      summary: Get user addresses
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              addresses:
+                type: array
+                items:
+                  $ref: '#/definitions/Address'
+    post:
+      tags:
+        - Addresses
+      summary: Add new user addresses
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: address[address_fullname]
+          in: formData
+          description: The name of address
+          required: true
+          type: string
+        - name: address[flat_building_number]
+          in: formData
+          description: The flat building number
+          type: integer
+        - name: address[address_line1]
+          in: formData
+          description: The address line 1
+          type: string
+          required: true
+        - name: address[address_instruction]
+          in: formData
+          description: Intruction for driver
+          type: text
+        - name: address[lat]
+          in: formData
+          description: Latitude
+          type: float
+        - name: address[lon]
+          in: formData
+          description: Longitude
+          type: float
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              addresses:
+                type: array
+                items:
+                  $ref: '#/definitions/Address'
+  /addresses/{id}:
+    get:
+      tags:
+        - Addresses
+      summary: Get Detail address
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              addresses:
+                type: object
+                items:
+                  $ref: '#/definitions/Address'
+    put:
+      tags:
+        - Addresses
+      summary: Get Detail address
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: address[address_fullname]
+          in: formData
+          description: The name of address
+          required: true
+          type: string
+        - name: address[flat_building_number]
+          in: formData
+          description: The flat building number
+          type: integer
+        - name: address[address_line1]
+          in: formData
+          description: The address line 1
+          type: string
+          required: true
+        - name: address[address_instruction]
+          in: formData
+          description: Intruction for driver
+          type: text
+        - name: address[lat]
+          in: formData
+          description: Latitude
+          type: float
+        - name: address[lon]
+          in: formData
+          description: Longitude
+          type: float
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              addresses:
+                type: object
+                items:
+                  $ref: '#/definitions/Address'
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
@@ -455,3 +585,26 @@ definitions:
         type: string
       cost_per_carton:
         type: float
+  Address:
+    type: object
+    properties:
+      id:
+        type: integer
+      address_fullname:
+        type: string
+      flat_building_number:
+        type: integer
+      address_line1:
+        type: string
+      address_instruction:
+        type: text
+      lat:
+        type: float
+      lon:
+        type: float
+
+
+
+
+
+
