@@ -41,7 +41,7 @@ Rails.application.configure do
     enable_starttls_auto:  true
   }
 
-  config.action_mailer.default_url_options = { host: '117.3.36.11', port: 5000 }
+  config.action_mailer.default_url_options = { host: '117.3.36.11', port: 9999 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

@@ -23,11 +23,11 @@ class Api::V1::AddressesController < Api::BaseController
     @address = current_user.addresses.new(address_params)
 
     respond_to do |format|
-      if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
-        format.json { render :show, status: :created, location: @address }
+      if @address.save(address_params)
+        format.html { redirect_to api_v1_addresses_url(@addres), notice: 'Address was successfully created.' }
+        format.json { render :show, status: :ok, location: api_v1_addresses_url(@address) }
       else
-        format.html { render :new }
+        format.html { render :show }
         format.json { render json: @address.errors, status: :unprocessable_entity }
       end
     end
@@ -39,7 +39,7 @@ class Api::V1::AddressesController < Api::BaseController
     respond_to do |format|
       if @address.update(address_params)
         format.html { redirect_to @address, notice: 'Address was successfully updated.' }
-        format.json { render :show, status: :ok, location: @address }
+        format.json { render :show, status: :ok, location: api_v1_addresses_url(@address) }
       else
         format.html { render :edit }
         format.json { render json: @address.errors, status: :unprocessable_entity }
@@ -65,6 +65,6 @@ class Api::V1::AddressesController < Api::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.fetch(:address, {})
+      params.require(:address).permit(:address_line1, :address_fullname, :lat, :lon, :flat_building_number, :address_instruction)
     end
 end

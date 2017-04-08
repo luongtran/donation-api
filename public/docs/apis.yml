@@ -29,6 +29,7 @@ tags:
   - name: Charity
   - name: DonationCategory
   - name: PackageCost
+  - name: Addresses
 
 ################################################################################
 #                                  Security                                    #
@@ -453,6 +454,10 @@ paths:
       - access-token: []
         client: []
         uid: []
+      parameters:
+        - name: id
+          in: path
+          type: integer
       responses:
         '200':
           description: OK

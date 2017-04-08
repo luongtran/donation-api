@@ -3,6 +3,6 @@ json.set! :success, true
 json.set! :message, t('addresses.get.success')
 json.data do
   json.address do
-    json.partial! "api_v1_addresses/_address", address: @address
+    json.partial! "address", address: @address
   end
 end
