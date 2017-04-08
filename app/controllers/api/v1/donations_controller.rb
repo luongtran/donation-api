@@ -5,7 +5,7 @@ class Api::V1::DonationsController < Api::BaseController
   # GET /api/v1/donations
   # GET /api/v1/donations.json
   def index
-    @donations = current_user.donations
+    @donations = current_user.donations.includes(:attachments, :donation_categories)
   end
 
   def total_donations
@@ -70,7 +70,7 @@ class Api::V1::DonationsController < Api::BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_donation
-      @donation = Donation.find(params[:id])
+      @donation = Donation.includes(:donation_categories, :attachments).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

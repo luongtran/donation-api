@@ -714,6 +714,27 @@ paths:
                 type: string
               http_status_code:
                 type: integer
+  /donations/total:
+    get:
+      tags:
+        - Donations
+      summary: Delete Donation
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              total:
+                type: integer
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
