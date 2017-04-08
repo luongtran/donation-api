@@ -43,7 +43,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :donations
+      resources :donations do
+        collection do
+          get :total_donations, path: "total"
+        end
+      end
 
       resources :charity_locations, only: [:index] do
         collection do

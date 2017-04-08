@@ -75,6 +75,9 @@ en:
     delete:
       success: Delete donation successfully
       failed: Delete donation failed
+  total_donations:
+    get:
+      success: Get total donations successfully
   package_cost:
     get:
       success: Get list package costs successfully
