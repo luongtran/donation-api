@@ -481,6 +481,9 @@ paths:
         client: []
         uid: []
       parameters:
+        - name: id
+          in: path
+          type: integer
         - name: address[address_fullname]
           in: formData
           description: The name of address
