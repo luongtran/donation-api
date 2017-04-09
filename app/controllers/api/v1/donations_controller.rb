@@ -33,7 +33,7 @@ class Api::V1::DonationsController < Api::BaseController
     @donation = current_user.donations.new(donation_params)
     respond_to do |format|
       if @donation.save
-        @donation.donation_categories = DonationCategory.where(id: params[:donation_category_ids])
+        @donation.donation_categories = DonationCategory.where(id: params[:donation][:donation_category_ids])
         format.html { redirect_to api_v1_donation_url @donation, notice: 'Donation was successfully created.' }
         format.json { render :show, status: :created, location: api_v1_donation_url(@donation) }
       else
@@ -76,6 +76,6 @@ class Api::V1::DonationsController < Api::BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
       params.require(:donation).permit(:user_id, :charity_id, :package_cost_id, :address_id, :total_price, :number_of_cartons, 
-        :is_fragile, :wimo_task_id, :donation_category_ids => [],  attachments_attributes: [:id, :file, :_destroy])
+        :is_fragile, :wimo_task_id, donation_category_ids: [],  attachments_attributes: [:id, :file, :_destroy])
     end
 end
