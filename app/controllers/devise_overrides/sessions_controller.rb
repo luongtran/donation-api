@@ -10,13 +10,13 @@ class DeviseOverrides::SessionsController < DeviseTokenAuth::SessionsController
   end
 
 
-  def destroy
-    super do |resource|
-      if params[:device][:os] && params[:device][:token]
-        resource.devices.where(os: params[:device][:os], token: params[:device][:token]).delete_all
-      end
-    end
-  end
+  # def destroy
+  #   super do |resource|
+  #     if params[:device][:os] && params[:device][:token]
+  #       resource.devices.where(os: params[:device][:os], token: params[:device][:token]).delete_all
+  #     end
+  #   end
+  # end
 
   protected
 
