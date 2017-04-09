@@ -585,10 +585,12 @@ paths:
           in: formData
           description: Wimo task id
           type: integer
-        - name: donation[donation_category_ids][]
+        - name: donation[donation_category_ids]
           in: formData
-          description: donation_categories
+          description: Donation categories IDS
           type: array
+          items: 
+            type: integer
         - name: donation[attachments_attributes[][file]]
           in: formData
           description: Donation images

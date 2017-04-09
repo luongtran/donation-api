@@ -76,6 +76,6 @@ class Api::V1::DonationsController < Api::BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
       params.require(:donation).permit(:user_id, :charity_id, :package_cost_id, :address_id, :total_price, :number_of_cartons, 
-        :is_fragile, :wimo_task_id, donation_category_ids: [],  attachments_attributes: [:id, :file, :_destroy])
+        :is_fragile, :wimo_task_id, :donation_category_ids => [],  attachments_attributes: [:id, :file, :_destroy])
     end
 end
