@@ -14,4 +14,5 @@ end
 json.package_cost do
 	json.extract! donation.package_cost, :id, :package_size, :cost_per_carton
 end
+json.courier_cost @courier_cost
 
