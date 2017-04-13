@@ -306,8 +306,11 @@ paths:
         uid: []
       parameters:
         - name: charity_location_id
-          in: queryString
+          in: query
           type: integer
+        - name: q
+          in: query
+          type: string
       responses:
         '200':
           description: OK

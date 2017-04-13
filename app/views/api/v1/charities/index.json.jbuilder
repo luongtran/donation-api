@@ -4,7 +4,7 @@ json.set! :message, t('charities.get.success')
 json.data do
   json.charities do
     json.array! @charities do |charity|
-      json.extract! charity, :id, :name, :status
+      json.extract! charity, :id, :name, :status, :charity_location_id
     end
   end
 end
