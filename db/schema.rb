@@ -27,19 +27,6 @@ ActiveRecord::Schema.define(version: 20170408181740) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "api_v1_donations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "charity_id"
-    t.integer  "package_cost_id"
-    t.integer  "address_id"
-    t.float    "total_price"
-    t.integer  "number_of_cartons"
-    t.boolean  "is_fragile"
-    t.integer  "wimo_task_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
   create_table "attachments", force: :cascade do |t|
     t.string   "file_file_name"
     t.string   "file_content_type"
