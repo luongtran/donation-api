@@ -5,4 +5,10 @@ end
 json.donation_categories do 
 	json.array! donation.donation_categories, :id, :cat_name
 end
+json.address do
+	json.extract! donation.address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon
+end
+json.charity do
+	json.extract! donation.charity, :id, :name
+end
 

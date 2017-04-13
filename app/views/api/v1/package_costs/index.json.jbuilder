@@ -7,4 +7,5 @@ json.data do
       json.extract! package_cost, :id, :package_size, :cost_per_carton
     end
   end
+  json.courier_cost @courier_cost
 end

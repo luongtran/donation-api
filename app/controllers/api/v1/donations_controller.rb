@@ -5,12 +5,17 @@ class Api::V1::DonationsController < Api::BaseController
   # GET /api/v1/donations
   # GET /api/v1/donations.json
   def index
-    @donations = current_user.donations.includes(:attachments, :donation_categories, :charity)
+    @donations = current_user.donations.includes(:attachments, :donation_categories, :address, :charity)
   end
 
   def total_donations
     @total = Donation.count
     render json: {http_status_code: 200, success: true, message: t('total_donations.get.success') ,total: @total}
+  end
+
+  def courier_cost
+    @courier_cost = CourierCost.first
+    render json: {http_status_code: 200, success: true, message: t('total_donations.get.success') ,courier_cost: @courier_cost.cost}
   end
 
   # GET /api/v1/donations/1
@@ -40,6 +45,25 @@ class Api::V1::DonationsController < Api::BaseController
         format.html { render :new }
         format.json { render json: @donation.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def upload_images
+    @attachments = []
+    if params[:attachments] && params[:attachments].kind_of?(Array)
+      params[:attachments].each do |attachment|
+        attachment = Attachment.new(attachment_params)
+        if attachment.save
+          @attachments << attachment
+        end
+      end
+
+      if !@attachments.empty?
+
+      else
+
+      end
+
     end
   end
 
@@ -77,5 +101,9 @@ class Api::V1::DonationsController < Api::BaseController
     def donation_params
       params.require(:donation).permit(:user_id, :charity_id, :package_cost_id, :address_id, :total_price, :number_of_cartons, 
         :is_fragile, :wimo_task_id, donation_category_ids: [],  attachments_attributes: [:id, :file, :_destroy])
+    end
+
+    def attachment_params
+      params.require(:attachment).permit(:file)
     end
 end
