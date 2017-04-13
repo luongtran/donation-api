@@ -7,7 +7,7 @@ json.donation_categories do
 end
 if !donation.address.nil?
 	json.address do
-		json.extract! donation.address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon
+		json.extract! donation.address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon, :city, :area, :country
 	end
 end
 

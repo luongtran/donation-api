@@ -1,1 +1,1 @@
-json.extract! address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon
+json.extract! address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon, :city, :area, :country
