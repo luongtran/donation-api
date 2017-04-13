@@ -11,4 +11,7 @@ end
 json.charity do
 	json.extract! donation.charity, :id, :name
 end
+json.package_cost do
+	json.extract! donation.package_cost, :id, :package_size, :cost_per_carton
+end
 
