@@ -5,6 +5,8 @@ class Api::V1::DonationsController < Api::BaseController
   # GET /api/v1/donations
   # GET /api/v1/donations.json
   def index
+    courier_cost = CourierCost.first 
+    @courier_cost = !courier_cost.nil? ? courier_cost.cost : 30;
     @donations = current_user.donations.includes(:attachments, :donation_categories, :address, :charity)
   end
 
@@ -21,6 +23,8 @@ class Api::V1::DonationsController < Api::BaseController
   # GET /api/v1/donations/1
   # GET /api/v1/donations/1.json
   def show
+    courier_cost = CourierCost.first 
+    @courier_cost = !courier_cost.nil? ? courier_cost.cost : 30;
   end
 
   # GET /api/v1/donations/new
