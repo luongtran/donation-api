@@ -3,6 +3,7 @@ class Api::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
   respond_to :json
 
+
   # if Rails.env.production?
     rescue_from StandardError do |_e|
       log_server_error(_e, {
@@ -52,4 +53,5 @@ class Api::BaseController < ApplicationController
         t('devise.failure.unauthenticated')
     end
   end
+
 end

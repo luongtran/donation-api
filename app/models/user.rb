@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include PgSearch
-  pg_search_scope :index_search, :against => [:name, :surname, :email], :using => [:tsearch]
+  pg_search_scope :index_search, :against => [:name, :fullname, :email], :using => [:tsearch]
   VALID_ROLES = %w(admin user customer editor).freeze
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and
@@ -31,9 +31,7 @@ class User < ApplicationRecord
     scope role, -> { where(role: role) }
   end
 
-  def full_name
-    [name,surname].join(' ')
-  end
+  
 
   def as_json(options = nil)
     response_json = super
