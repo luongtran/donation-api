@@ -5,14 +5,23 @@ end
 json.donation_categories do 
 	json.array! donation.donation_categories, :id, :cat_name
 end
-json.address do
-	json.extract! donation.address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon
+if !donation.address.nil?
+	json.address do
+		json.extract! donation.address, :id, :address_fullname, :flat_building_number, :address_line1, :address_instruction, :lat, :lon
+	end
 end
-json.charity do
-	json.extract! donation.charity, :id, :name
+
+if !donation.charity.nil?
+	json.charity do
+		json.extract! donation.charity, :id, :name
+	end
 end
-json.package_cost do
-	json.extract! donation.package_cost, :id, :package_size, :cost_per_carton
+
+if !donation.package_cost.nil?
+	json.package_cost do
+		json.extract! donation.package_cost, :id, :package_size, :cost_per_carton
+	end
 end
+
 json.courier_cost @courier_cost
 
