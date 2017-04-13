@@ -736,6 +736,27 @@ paths:
                 type: integer
               total:
                 type: integer
+  /donations/courier-cost:
+    get:
+      tags:
+        - Donations
+      summary: Get courier cost
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+              courier_cost:
+                type: float
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
