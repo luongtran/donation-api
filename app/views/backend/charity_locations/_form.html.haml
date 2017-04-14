@@ -1,0 +1,32 @@
+= simple_form_for ['backend', @charity_location] do |f|
+  .row
+    .col-sm-12
+      = f.input :location_name
+  .row
+    .col-sm-12
+      = f.check_box :status
+      Active
+  .row
+  
+  .row
+    .col-md-12
+      %h3 Charities
+
+    - @charity_location.charities do |charity|
+      .col-md-6
+        %span= charity.name
+  .row
+    = f.fields_for :charities, wrapper: false do |fc|
+      .col-md-4
+        = fc.input :name
+        = fc.link_to_remove "Remove", class: 'btn btn-remove btn-danger'
+    .col-md-12
+      = f.link_to_add :charities, class: 'btn btn-primary' do
+        %i.fa.fa-plus
+        Add a Charity
+
+  = f.submit nil, class: 'btn btn-sm btn-success'
+  = link_to 'Back', backend_charity_locations_path, class: 'btn btn-sm btn-warning'
+
+
+

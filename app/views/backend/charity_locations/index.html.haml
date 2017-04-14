@@ -1,0 +1,53 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Charity Donation management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Charity Locations', backend_charity_locations_path
+      %li.active All Charity Locations
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing Charity Locations
+      .box-header.row
+        .col-md-6
+          &nbsp;
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_charity_location_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New Charity Location
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Location Name
+              %th Status
+              %th Action...
+          %tbody
+            - @charity_locations.each do |location|
+              %tr
+                %td= location.id
+                %td= location.location_name.try :humanize
+                %td= location.status ? "Active" : "Inactive"
+                %td
+                  .btn-group
+                    = link_to edit_backend_charity_location_path(location), class: "btn btn-primary btn-sm" do
+                      %i.fa.fa-pencil
+                      Edit
+                    = link_to backend_charity_location_path(location), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-user
+                      Show
+                    = link_to backend_charity_location_path(location), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      .push-notification
+      
+
+
+

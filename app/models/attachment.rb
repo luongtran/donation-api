@@ -18,7 +18,7 @@ class Attachment < ApplicationRecord
   validates_attachment_presence :file
   validates_attachment_content_type :file, content_type: /\Aimage/
   validates_attachment_file_name :file, matches: [/png\z/, /jpe?g\z/]
-  validates_attachment_size :file, less_than: 10.megabytes
+  validates_attachment_size :file, less_than: 40.megabytes
 
   def original_url
     file.url

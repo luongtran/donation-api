@@ -1,0 +1,1 @@
+json.partial! "backend_donation_locations/backend_donation_location", backend_donation_location: @backend_donation_location
