@@ -1,0 +1,19 @@
+%h1 Listing backend_charities
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @backend_charities.each do |backend_charity|
+      %tr
+        %td= link_to 'Show', backend_charity
+        %td= link_to 'Edit', edit_backend_charity_path(backend_charity)
+        %td= link_to 'Destroy', backend_charity, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Charity', new_backend_charity_path

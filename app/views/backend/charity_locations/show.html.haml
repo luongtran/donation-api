@@ -1,0 +1,20 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Charity Locations management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Charity locations', backend_charity_locations_path
+      %li.active Charity Location details
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3= @charity_location.location_name
+      %h5= @charity_location.status ? "Active" : "Inactive"
+      %p= @charity_location.created_at.strftime('%a %m-%d-%Y at %H:%M %P')
+      = link_to 'Edit', edit_backend_charity_location_path(@charity_location)
+      = link_to 'Back', backend_charity_locations_path, class: 'btn btn-sm btn-warning'
+

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resource :profile, only: [:show, :update, :destroy] do
       get :account_setting
     end
+    resources :charity_locations do
+      collection do 
+        resources :charities
+      end
+    end
     resources :users do
       member do
         post :notification_modal

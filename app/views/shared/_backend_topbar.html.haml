@@ -163,7 +163,7 @@
       %li.dropdown
         %a.dropdown-toggle.profile-pic{"data-toggle" => "dropdown", href: "#"}
           = image_tag current_user.image.url, alt: 'user-img', width: 36
-          %b.hidden-xs.username= current_user.full_name.titleize
+          %b.hidden-xs.username= current_user.fullname.titleize
         %ul.dropdown-menu.dropdown-user
           %li
             = link_to backend_profile_path do
