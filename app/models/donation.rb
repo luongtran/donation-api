@@ -11,8 +11,6 @@ class Donation < ApplicationRecord
 
 	attr_accessor :donation_category_ids
 
-	after_save :sync_task
-
 	require 'httparty'
 
 	  BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
@@ -30,7 +28,7 @@ class Donation < ApplicationRecord
 	  	else
 	  		donation.sync_status = false
 	  	end
-	  	donation.save!
+	  	donation.save
 	  end
 
 	  private
