@@ -30,7 +30,7 @@ class Donation < ApplicationRecord
 	  	else
 	  		donation.sync_status = false
 	  	end
-	  	donation.save!
+	  	donation.save
 	  end
 
 	  private
