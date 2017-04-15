@@ -18,6 +18,7 @@ class Donation < ApplicationRecord
 	  def sync_task
 	  	donation = self
 	  	params = request_body(donation)
+	  	logger.info(params)
 	  	headers = request_header
 	  	response = HTTParty.post(BASE_API_URL, query: params, headers: headers)
 	  	logger.info(response)
