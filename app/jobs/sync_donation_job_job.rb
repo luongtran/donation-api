@@ -7,7 +7,7 @@ class SyncDonationJobJob < ApplicationJob
   def perform(*donation)
   	params = request_body(donation)
   	headers = request_header
-  	response = HTTParty.post(BASE_API_URL, query: params, headers: headers)
+  	response = HTTParty.post(BASE_API_URL, body: params, headers: headers)
   	logger.info(response)
   	if(response.success?)
   		resBody = JSON.parse(response.body) 
@@ -23,7 +23,7 @@ class SyncDonationJobJob < ApplicationJob
 
   private
 	def request_header
-		{"authorization" => "42f824aa22ff7db6d904c43943aef9ed", "Content-Type": "application/json"}.to_json
+		{"authorization" => "42f824aa22ff7db6d904c43943aef9ed", "Content-Type": "application/json"}
 	end
 
 	def request_body(donation)
