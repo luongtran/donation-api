@@ -6,15 +6,13 @@ class SyncDonationJobJob < ApplicationJob
 
   def perform(*donation)
   	params = request_body(donation)
+  	logger.info(params)
   	headers = request_header
-  	response = HTTParty.post(BASE_API_URL, body: params, headers: headers)
-  	logger.info(response)
-  	if(response.success?)
-  		resBody = JSON.parse(response.body) 
-  		if resBody.success || resBody == 1
-  			donation.wimo_task_id = response.task.id
-  			donation.sync_status = true
-  		end
+  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
+  	response = JSON.parse(response.body)
+  	if(response["success"])
+			donation.wimo_task_id = response["task"]["id"]
+			donation.sync_status = true
   	else
   		donation.sync_status = false
   	end
