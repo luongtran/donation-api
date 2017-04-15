@@ -86,6 +86,8 @@ gem 'axlsx_rails'
 
 gem 'httparty'
 
+gem 'sidekiq-scheduler'
+
 group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'better_errors'
