@@ -49,7 +49,7 @@ class SyncDonationJobJob < ApplicationJob
 		  totalPrice: donation.total_price,
 		  paymentTypeId: 1
 		}
-		donationParam.to_json
+		donationParam
 	end
 
 end
