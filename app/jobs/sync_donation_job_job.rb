@@ -1,5 +1,6 @@
 class SyncDonationJobJob < ApplicationJob
   queue_as :urgent
+  require 'httparty'
 
   BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
@@ -8,9 +9,12 @@ class SyncDonationJobJob < ApplicationJob
   	headers = request_header
   	response = HTTParty.post(BASE_API_URL, query: params, headers: headers)
   	logger.info(response)
-  	if(response.success? && (response['success'] || response['success'] == 1)) 
-  		donation.wimo_task_id = response['task']['id']
-  		donation.sync_status = true
+  	if(response.success?)
+  		resBody = JSON.parse(response.body) 
+  		if resBody.success || resBody == 1
+  			donation.wimo_task_id = response.task.id
+  			donation.sync_status = true
+  		end
   	else
   		donation.sync_status = false
   	end
