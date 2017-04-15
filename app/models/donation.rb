@@ -24,6 +24,8 @@ class Donation < ApplicationRecord
 	  	logger.info(response)
 	  	if(response.success?)
 	  		resBody = JSON.parse(response.body) 
+	  		logger.info(resBody)
+	  		logger.info "response success #{resBody.success} - #{resBody.task} - #{resBody.task.id}"
 	  		if resBody.success || resBody == 1
 	  			donation.wimo_task_id = response.task.id
 	  			donation.sync_status = true
