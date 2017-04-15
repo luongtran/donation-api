@@ -20,16 +20,11 @@ class Donation < ApplicationRecord
 	  	params = request_body(donation)
 	  	logger.info(params)
 	  	headers = request_header
-	  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
-	  	logger.info "response success #{response.success}"
+	  	response = (JSON.parseHTTParty.post(BASE_API_URL, body: params.to_json, headers: headers))
+	  	logger.info "response success "
 	  	if(response.success?)
-	  		resBody = JSON.parse(response.body) 
-	  		logger.info(resBody)
-	  		logger.info "response success #{resBody.success} - #{resBody.task} - #{resBody.task.id}"
-	  		if resBody.success || resBody == 1
-	  			donation.wimo_task_id = response.task.id
-	  			donation.sync_status = true
-	  		end
+  			donation.wimo_task_id = response.task.id
+  			donation.sync_status = true
 	  	else
 	  		donation.sync_status = false
 	  	end
