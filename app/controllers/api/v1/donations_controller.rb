@@ -42,6 +42,7 @@ class Api::V1::DonationsController < Api::BaseController
     @donation = current_user.donations.new(donation_params)
     respond_to do |format|
       if @donation.save
+        SyncDonationJobJob.perform_later @donation
         @donation.donation_categories = DonationCategory.where(id: params[:donation][:donation_category_ids])
         format.html { redirect_to api_v1_donation_url @donation, notice: 'Donation was successfully created.' }
         format.json { render :show, status: :created, location: api_v1_donation_url(@donation) }
