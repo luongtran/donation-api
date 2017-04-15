@@ -1,10 +1,12 @@
 class SyncDonationJobJob < ApplicationJob
   queue_as :urgent
 
-  BASE_API_URL = 'http://be.wimo.ae:3000/api/v1'
+  BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
   def perform(*donation)
-  	response = HTTParty.post(BASE_API_URL.'/tasks', query: request_body(donation), headers: request_header)
+  	params = request_body(donation)
+  	headers = request_header
+  	response = HTTParty.post(BASE_API_URL, query: params, headers: headers)
   	if(response.success || response.success == 1) 
   		donation.sync_status = true
   	else
@@ -15,7 +17,7 @@ class SyncDonationJobJob < ApplicationJob
 
   private
 	def request_header
-		{"authorization" => "42f824aa22ff7db6d904c43943aef9ed", "Content-Type": "application/json"}
+		{"authorization" => "42f824aa22ff7db6d904c43943aef9ed", "Content-Type": "application/json"}.to_json
 	end
 
 	def request_body(donation)
