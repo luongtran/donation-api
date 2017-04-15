@@ -11,12 +11,26 @@ class Donation < ApplicationRecord
 
 	attr_accessor :donation_category_ids
 
+	after_save :sync_task
+
 	require 'httparty'
 
 	  BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
 	  def sync_task
-	  	
+	  	donation = self
+	  	params = request_body(donation)
+	  	logger.info(params)
+	  	headers = request_header
+	  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
+	  	response = JSON.parse(response.body)
+	  	if(response["success"])
+  			donation.wimo_task_id = response["task"]["id"]
+  			donation.sync_status = true
+	  	else
+	  		donation.sync_status = false
+	  	end
+	  	donation.save!
 	  end
 
 	  private
