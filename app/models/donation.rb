@@ -60,7 +60,7 @@ class Donation < ApplicationRecord
 			    name: donation.user.fullname,
 			    phone: donation.user.phone
 			  },
-			  pickupTask: 1,
+			  pickupTask: true,
 			  totalPrice: donation.total_price,
 			  paymentTypeId: 1
 			}
