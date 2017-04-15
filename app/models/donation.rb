@@ -23,8 +23,8 @@ class Donation < ApplicationRecord
 	  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
 	  	response = JSON.parse(response.body)
 	  	logger.info response
-	  	if(response.success?)
-  			donation.wimo_task_id = response.task.id
+	  	if(response[:success])
+  			donation.wimo_task_id = response[:task][:id]
   			donation.sync_status = true
 	  	else
 	  		donation.sync_status = false
