@@ -20,7 +20,7 @@ class Donation < ApplicationRecord
 	  	params = request_body(donation)
 	  	logger.info(params)
 	  	headers = request_header
-	  	response = HTTParty.post(BASE_API_URL, query: params, headers: headers)
+	  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
 	  	logger.info(response)
 	  	if(response.success?)
 	  		resBody = JSON.parse(response.body) 
