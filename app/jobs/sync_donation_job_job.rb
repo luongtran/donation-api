@@ -7,7 +7,9 @@ class SyncDonationJobJob < ApplicationJob
   	params = request_body(donation)
   	headers = request_header
   	response = HTTParty.post(BASE_API_URL, query: params, headers: headers)
-  	if(response.success || response.success == 1) 
+  	logger.info(response)
+  	if(response.success? && (response['success'] || response['success'] == 1)) 
+  		donation.wimo_task_id = response['task']['id']
   		donation.sync_status = true
   	else
   		donation.sync_status = false
