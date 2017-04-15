@@ -22,6 +22,7 @@ class Donation < ApplicationRecord
 	  	headers = request_header
 	  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
 	  	logger.info(response)
+	  	logger.info "response success #{response.success} - #{response.task} - #{response.task.id}"
 	  	if(response.success?)
 	  		resBody = JSON.parse(response.body) 
 	  		logger.info(resBody)
