@@ -4,19 +4,23 @@ class SyncDonationJobJob < ApplicationJob
 
   BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
-  def perform(*donation)
-  	params = request_body(donation)
-  	logger.info(params)
-  	headers = request_header
-  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
-  	response = JSON.parse(response.body)
-  	if(response["success"])
-			donation.wimo_task_id = response["task"]["id"]
-			donation.sync_status = true
-  	else
-  		donation.sync_status = false
-  	end
-  	donation.save!
+  def perform(*donation_id)
+    donation = Donation.find donation_id
+    unless donation.nil?
+      params = request_body(donation)
+      logger.info(params)
+      headers = request_header
+      response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
+      response = JSON.parse(response.body)
+      if(response["success"])
+        donation.wimo_task_id = response["task"]["id"]
+        donation.sync_status = true
+      else
+        donation.sync_status = false
+      end
+      donation.save
+    end
+
   end
 
   private
