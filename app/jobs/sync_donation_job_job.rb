@@ -1,13 +1,19 @@
-class SyncDonationJobJob < ApplicationJob
-  queue_as :urgent
+class SyncDonationJobJob
+  include Sidekiq::Worker
   require 'httparty'
 
   BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
   def perform(*donation_id)
-    donation = Donation.find donation_id
+    log = Logger.new('log/SyncDonationJobJob.log')
+    log.info "Running at #{Time.now}"
+    log.info "id #{donation_id}"
+    donation = Donation.includes(:address).includes(:user).find donation_id
+
     unless donation.nil?
+      donation = donation.first
       params = request_body(donation)
+      log.info "params #{params}"
       logger.info(params)
       headers = request_header
       response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
@@ -19,6 +25,7 @@ class SyncDonationJobJob < ApplicationJob
         donation.sync_status = false
       end
       donation.save
+      log.info "donation errors : #{donation.errors.full_messages}"
     end
 
   end
