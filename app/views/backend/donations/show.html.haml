@@ -1,0 +1,46 @@
+
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Charity Locations management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Charity locations', backend_charity_locations_path
+      %li.active Charity Location details
+  / /.col-lg-12
+/ row
+
+.row
+.col-lg-12
+  %h3 Property: #{@donation.user.fullname} - #{@donation.charity.name}
+  .white-box
+    %dl.dl-horizontal
+      %dt Address
+      %dd= @donation.address.address_line1
+      %dt Phone number
+      %dd= @donation.user.phone
+      %dt Package size
+      %dd= !@donation.package_cost.nil? ? @donation.package_cost.package_size : "-"
+      %dt Number of Cartons
+      %dd= "#{@donation.number_of_cartons} cartons"
+      %dt Total price
+      %dd= @donation.total_price
+      %dt Is Fragile
+      %dd= @donation.is_fragile ? "Yes" : "No"
+      %dt Sync Status
+      %dd= @donation.sync_status ? "Done" : "ERROR"
+      %dt Wimo Task
+      %dd= !@donation.wimo_task_id.nil? ? @donation.wimo_task_id : "-"
+
+
+  .col-sm-12
+    %h3 Attachments
+
+  .col-sm-12.car-attachment.white-box
+    - @donation.attachments.each do |attachment|
+      = image_tag(attachment.file.url(:thumb), width: '140')
+  .col-sm-12.white-box
+    = link_to 'Back', backend_donations_url , class: 'btn btn-sm btn-warning'
+
+

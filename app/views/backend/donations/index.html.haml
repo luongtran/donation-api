@@ -1,0 +1,65 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Donations management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Donations', backend_donations_path
+      %li.active All Charity Locations
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing Donations
+      .box-header.row
+        .col-md-6
+          &nbsp;
+        .col-md-6
+          &nbsp;
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th User
+              %th Charity Name
+              %th Address
+              %th Package size
+              %th Number of Cartons
+              %th Is Fragile
+              %th Total cost
+              %th Sync Status
+              %th Wimo Task ID
+              %th Action...
+          %tbody
+            - @donations.each do |donation|
+              %tr
+                %td= donation.id
+                %td= donation.user.fullname.try :humanize
+                %td= !donation.charity.nil? ? donation.charity.name.try(:humanize) : "-"
+                %td= donation.address.address_line1
+                %td= !donation.package_cost.nil? ? donation.package_cost.package_size : "-"
+                %td= donation.number_of_cartons
+                %td= donation.is_fragile ? "YES" : "NO"
+                %td= donation.total_price
+                %td= donation.sync_status ? "DONE" : "ERROR"
+                %td= donation.wimo_task_id != 0 ? donation.wimo_task_id : "-"
+                %td
+                  .btn-group
+                    = link_to backend_donation_path(donation), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-user
+                      Show
+                    = link_to backend_donation_sync_path(donation), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-user
+                      Sync Again
+                    = link_to backend_donation_path(donation), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      .push-notification
+      = paginate @donations
+      
+
+
+

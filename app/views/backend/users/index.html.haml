@@ -24,30 +24,25 @@
             = link_to new_backend_user_path, class: 'btn btn-success' do
               %i.fa.fa-plus
               New user
-            = link_to 'Export', backend_users_path(format: 'xlsx'), class: 'btn btn-primary'
+            
       .table-responsive
         %table.table.table-hover.table-striped.table-bordered
           %thead
             %tr
               %th #
               %th Name
-              %th Surname
               %th Email
               %th Role
-              %th Provider
               %th Action...
           %tbody
             - @users.each do |user|
               %tr
                 %td= user.id
-                %td= user.name.try :humanize
-                %td= user.surname.try :humanize
+                %td= user.fullname.try :humanize
                 %td
                   = link_to user.email, "maito:#{user.email}"
                 %td
                   %span.label{class: label_class_for(user.role)}= user.role
-                %td
-                  %span.label{class: label_class_for(user.provider)}= user.provider
                 %td
                   .btn-group
                     = link_to edit_backend_user_path(user), class: "btn btn-primary btn-sm" do
@@ -59,9 +54,6 @@
                     = link_to backend_user_path(user), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
                       %i.fa.fa-trash
                       Destroy
-                    - if can?(:push_notification, user) && user.devices.length > 0
-                      = link_to notification_modal_backend_user_path(user), data: {method: 'post', remote: true}, class: 'btn btn-sm btn-warning' do
-                        %i.fa.fa-send
-                        Push notification
+                   
       .push-notification
       = paginate @users

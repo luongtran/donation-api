@@ -1,0 +1,53 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Package costs management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Package Costs', backend_package_costs_path
+      %li.active All Package costs
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing Package costs
+      .box-header.row
+        .col-md-6
+          &nbsp;
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_package_cost_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New Package Cost
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Package size
+              %th Cost per carton
+              %th Action...
+          %tbody
+            - @package_costs.each do |package|
+              %tr
+                %td= package.id
+                %td= package.package_size
+                %td= package.cost_per_carton
+                %td
+                  .btn-group
+                    = link_to edit_backend_package_cost_path(package), class: "btn btn-primary btn-sm" do
+                      %i.fa.fa-pencil
+                      Edit
+                    = link_to backend_package_cost_path(package), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-user
+                      Show
+                    = link_to backend_package_cost_path(package), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      .push-notification
+      
+
+
+

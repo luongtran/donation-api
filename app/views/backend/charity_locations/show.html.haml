@@ -18,3 +18,34 @@
       = link_to 'Edit', edit_backend_charity_location_path(@charity_location)
       = link_to 'Back', backend_charity_locations_path, class: 'btn btn-sm btn-warning'
 
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing Charities
+      .box-header.row
+        .col-md-6
+          &nbsp;
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_charity_location_charity_url(@charity_location), class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New Charity
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th.col-sm-4 Name
+              %th.col-sm-4 Status
+              %td.col-sm-4 Actions
+          %tbody
+            - @charity_location.charities.each do |charity|
+              %tr
+                %td= charity.name
+                %td= charity.status ? "Active" : "Inactive"
+                %td
+                  .btn-group
+                    = link_to 'Show', backend_charity_location_charity_url(@charity_location, charity) 
+                    = link_to 'Edit', edit_backend_charity_location_charity_path(@charity_location, charity) 
+                    = link_to 'Destroy', backend_charity_location_charity_url(@charity_location, charity), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+

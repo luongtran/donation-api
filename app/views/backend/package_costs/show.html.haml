@@ -1,0 +1,18 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Package cost management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Package costs', backend_package_costs_path
+      %li.active Package cost details
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3= @package_cost.package_size
+      %h5= @package_cost.cost_per_carton
+      = link_to 'Edit', edit_backend_package_cost_path(@package_cost)
+      = link_to 'Back', backend_package_costs_path, class: 'btn btn-sm btn-warning'

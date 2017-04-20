@@ -18,7 +18,7 @@
           .user-content
             %a{:href => "javascript:void(0)"}
               = image_tag 'users/genu.jpg', class: 'thumb-lg img-circle'
-            %h4.text-white= current_user.full_name
+            %h4.text-white= current_user.fullname
             %h5.text-white= current_user.email
   .col-md-8.col-xs-12
     .white-box
@@ -44,7 +44,7 @@
             .col-md-3.col-xs-6.b-r
               %strong Full Name
               %br/
-              %p.text-muted= current_user.full_name
+              %p.text-muted= current_user.fullname
             .col-md-3.col-xs-6.b-r
               %strong Mobile
               %br/
@@ -113,10 +113,6 @@
                     %a{:href => "#"} Design weblayout
         #settings.tab-pane
           = simple_form_for current_user, url: backend_profile_path do |f|
-            = f.input :name
-            = f.input :surname
-            = f.input :organisation
-            = f.input :company_name
-            = f.input :website
+            = f.input :fullname
             = f.input :phone
             = f.submit 'Update Profile', class: 'btn btn-success'

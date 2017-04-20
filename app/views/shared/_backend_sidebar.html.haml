@@ -13,16 +13,26 @@
         = link_to backend_dashboard_path do
           %i.glyphicon.glyphicon-fire.fa-fw
           Dashboard
+      - if can? :read, :dashboard
+        %li
+          = link_to backend_donations_path do
+            %i.fa.fa-plane.fa-fw
+            Donations
       - if user_signed_in?
         - if can? :read, :user
           %li
             = link_to backend_users_path do
               %i.fa.fa-user-circle.fa-fw
               Users
-        - if can? :read, :jet
+        - if can? :read, :charity_location
           %li
             = link_to backend_charity_locations_path do
               %i.fa.fa-plane.fa-fw
               Donation Location
+        - if can? :read, :package_cost
+          %li
+            = link_to backend_package_costs_path do
+              %i.fa.fa-plane.fa-fw
+              Package cost
         
 

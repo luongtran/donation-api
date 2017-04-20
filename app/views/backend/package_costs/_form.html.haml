@@ -1,0 +1,9 @@
+= simple_form_for ['backend', @package_cost] do |f|
+  .row
+    .col-sm-6
+      = f.input :package_size
+  .row
+    .col-sm-6
+      = f.number_field :cost_per_carton
+  = f.submit nil, class: 'btn btn-sm btn-success'
+  = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

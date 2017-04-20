@@ -10,10 +10,15 @@ Rails.application.routes.draw do
       get :account_setting
     end
     resources :charity_locations do
-      collection do 
-        resources :charities
-      end
+      resources :charities
     end
+
+    resources :package_costs
+
+    resources :donations do
+      get "sync" => "donations#sync", as: :sync
+    end
+
     resources :users do
       member do
         post :notification_modal

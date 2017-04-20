@@ -48,7 +48,7 @@ gem 'aws-sdk'
 gem 'haml-rails'
 
 # Pagination
-# gem 'kaminari'
+gem 'kaminari'
 
 # Background running
 gem 'sidekiq'

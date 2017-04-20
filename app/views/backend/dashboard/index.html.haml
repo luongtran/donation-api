@@ -8,220 +8,41 @@
   / /.col-lg-12
 / /.row
 .row
-  .col-md-8.col-lg-9.col-sm-12
+  .col-md-12.col-lg-9.col-sm-12
     .white-box
       .row.row-in
-        .col-lg-3.col-sm-6
+        .col-lg-3.col-sm-4
           .col-in.text-center
-            %h5.text-danger Chrome
-            %h3.counter 5645
-        .col-lg-3.col-sm-6
+            %h5.text-danger Donations
+            %h3.counter 
+              = @total_donations
+        .col-lg-3.col-sm-4
           .col-in.text-center.b-r-none
-            %h5.text-muted.text-warning Mozila
-            %h3.counter 4250
-        .col-lg-3.col-sm-6
+            %h5.text-muted.text-warning Users
+            %h3.counter
+              = @total_users
+        .col-lg-3.col-sm-4
           .col-in.text-center
-            %h5.text-muted.text-purple Safari
-            %h3.counter 3450
-        .col-lg-3.col-sm-6
-          .col-in.text-center.b-0
-            %h5.text-info Explorer
-            %h3.counter 2500
+            %h5.text-muted.text-purple Charities
+            %h3.counter 
+              = @total_charities
       #morris-area-chart{:style => "height: 345px;"}
-  .col-md-4.col-lg-3.col-sm-6
-    .bg-purple.m-b-20
-      #myCarousel.carousel.vcarousel.slide.vertical.p-20
-        / Carousel items
-        .carousel-inner
-          .active.item
-            %i.fa.fa-map-marker.fa-2x.text-white
-            %p.text-white 25th Jan
-            %h2.text-white
-              Now Get
-              %span.font-bold 50% Off
-              %br/
-              on buy
-            %button.btn.btn-default.waves-effect.waves-light.m-t-15 Default
-          .item
-            %i.fa.fa-map-marker.fa-2x.text-white
-            %p.text-white 25th Jan
-            %h2.text-white
-              Now Get
-              %span.font-bold 50% Off
-              %br/
-              on buy
-            %button.btn.btn-success.waves-effect.waves-light.m-t-15 Default
-          .item
-            %i.fa.fa-map-marker.fa-2x.text-white
-            %p.text-white 25th Jan
-            %h2.text-white
-              Now Get
-              %span.font-bold 50% Off
-              %br/
-              on buy
-            %button.btn.btn-white.waves-effect.waves-light.m-t-15 Default
-  .col-md-4.col-lg-3.col-sm-6
-    .bg-info.m-b-20
-      #myCarouse2.carousel.vcarousel.slide.p-20
-        / Carousel items
-        .carousel-inner
-          .active.item
-            %h2.text-white
-              My Acting blown
-              %span.font-bold Your Mind
-              %br/
-              and you also laugh at
-              %br/
-              the moment
-            .twi-user
-              = image_tag 'users/hritik.jpg', alt: 'user-img', class: 'img-circle img-responsive pull-left'
-              %h4.text-white.m-b-0 Govinda
-              %p.text-white Actor
-          .item
-            %h2.text-white
-              My Acting blown
-              %span.font-bold Your Mind
-              %br/
-              and you also laugh at
-              %br/
-              the moment
-            .twi-user
-              = image_tag 'users/genu.jpg', alt: 'user-img', class: 'img-circle img-responsive pull-left'
-              %h4.text-white.m-b-0 Govinda
-              %p.text-white Actor
-          .item
-            %h2.text-white
-              My Acting blown
-              %span.font-bold Your Mind
-              %br/
-              and you also laugh at
-              %br/
-              the moment
-            .twi-user
-              = image_tag 'users/ritesh.jpg', alt: 'user-img', class: 'img-circle img-responsive pull-left'
-              %h4.text-white.m-b-0 Govinda
-              %p.text-white Actor
-/ row
-.row
-  .col-sm-6.col-xs-12.col-md-6.col-lg-3
-    .row
-      .col-lg-12
-        .white-box
-          .bar-widget
-            .table-box
-              .cell.text-left
-                #sparkline1
-              .cell.text-right
-                %h2.m-t-0.m-b-5.font-light.counter 3506
-                %h5.text-muted.m-b-0.m-t-0 Sales
-      .col-lg-12
-        .white-box
-          .bar-widget
-            .table-box
-              .cell.text-left
-                #sparkline2
-              .cell.text-right
-                %h2.m-t-0.m-b-5.font-light 18% Total
-                %h5.text-muted.m-b-0.m-t-0 Visitors
-    / /Portlet
-  .col-sm-6.col-xs-12.col-md-6.col-lg-3
-    .row
-      .col-md-12
-        .white-box
-          .col-md-5.col-sm-4
-            %h4.font-light
-              India,
-              %br/
-              Ahmedabad
-            %p
-              %b
-                1,20,000
-                %br/
-                USD
-          .col-md-7.col-sm-8
-            #sparkline3.text-center
-          .clearfix
-  .col-sm-6.col-xs-12.col-md-6.col-lg-3
-    .row
-      .col-lg-12
-        .white-box
-          .bar-widget
-            .table-box
-              .cell.text-left
-                #sparkline4
-              .cell.text-right
-                %h2.m-t-0.m-b-5.font-light.counter 2547
-                %h5.text-muted.m-b-0.m-t-0 clicks
-      .col-lg-12
-        .white-box
-          .bar-widget
-            .table-box
-              .cell.text-left
-                #sparkline6
-              .cell.text-right
-                %h2.m-t-0.m-b-5.font-light.counter 1354
-                %h5.text-muted.m-b-0.m-t-0 Views
-  .col-sm-6.col-xs-12.col-md-6.col-lg-3
-    .row
-      .col-md-12
-        .white-box
-          .col-md-3.col-sm-3
-            %h4.font-light
-              Total
-              %br/
-              Sales
-            %p
-              %b
-                1,20,000
-                %br/
-                USD
-          .col-md-9.col-sm-9
-            #sparkline5
-          .clearfix
-    / /Portlet
-/ / row
-/ row
+  
+  
+
 .row
   .col-md-4.col-xs-12.col-sm-6
     .white-box
-      %h3 To Do List
+      %h3 Recent donations
       %ul.list-task.list-group{"data-role" => "tasklist"}
         %li.list-group-item{"data-role" => "task"}
           .checkbox.checkbox-info
             %input#inputSchedule{:name => "inputCheckboxesSchedule", :type => "checkbox"}/
             %label{:for => "inputSchedule"}
               %span Schedule meeting
-        %li.list-group-item{"data-role" => "task"}
-          .checkbox.checkbox-info
-            %input#inputCall{:name => "inputCheckboxesCall", :type => "checkbox"}/
-            %label{:for => "inputCall"}
-              %span Call clients for follow-up
-              %span.label.label-danger Today
-        %li.list-group-item{"data-role" => "task"}
-          .checkbox.checkbox-info
-            %input#inputBook{:name => "inputCheckboxesBook", :type => "checkbox"}/
-            %label{:for => "inputBook"}
-              %span Book flight for holiday
-        %li.list-group-item{"data-role" => "task"}
-          .checkbox.checkbox-info
-            %input#inputForward{:name => "inputCheckboxesForward", :type => "checkbox"}/
-            %label{:for => "inputForward"}
-              %span Forward important tasks
-              %span.label.label-warning 2 weeks
-        %li.list-group-item{"data-role" => "task"}
-          .checkbox.checkbox-info
-            %input#inputRecieve{:name => "inputCheckboxesRecieve", :type => "checkbox"}/
-            %label{:for => "inputRecieve"}
-              %span Recieve shipment
-        %li.list-group-item{"data-role" => "task"}
-          .checkbox.checkbox-info
-            %input#inputForward2{:name => "inputCheckboxesd", :type => "checkbox"}/
-            %label{:for => "inputForward2"}
-              %span Important tasks
-              %span.label.label-success 2 weeks
   .col-md-4.col-xs-12.col-sm-6
     .white-box
-      %h3 You have 5 new messages
+      %h3 Recent Users
       .message-center
         %a{:href => "#"}
           .user-img
@@ -231,70 +52,4 @@
             %h5 Pavan kumar
             %span.mail-desc Just see the my admin!
             %span.time 9:30 AM
-        %a{:href => "#"}
-          .user-img
-            = image_tag 'users/sonu.jpg', alt: 'user-img', class: 'img-circle'
-            %span.profile-status.busy.pull-right
-          .mail-contnet
-            %h5 Sonu Nigam
-            %span.mail-desc I've sung a song! See you at
-            %span.time 9:10 AM
-        %a{:href => "#"}
-          .user-img
-            = image_tag 'users/arijit.jpg', alt: 'user-img', class: 'img-circle'
-            %span.profile-status.away.pull-right
-          .mail-contnet
-            %h5 Arijit Sinh
-            %span.mail-desc I am a singer!
-            %span.time 9:08 AM
-        %a{:href => "#"}
-          .user-img
-            = image_tag 'users/genu.jpg', alt: 'user-img', class: 'img-circle'
-            %span.profile-status.online.pull-right
-          .mail-contnet
-            %h5 Genelia Deshmukh
-            %span.mail-desc I love to do acting and dancing
-            %span.time 9:08 AM
-        %a.b-none{:href => "#"}
-          .user-img
-            = image_tag 'users/pawandeep.jpg', alt: 'user-img', class: 'img-circle'
-            %span.profile-status.offline.pull-right
-          .mail-contnet
-            %h5 Pavan kumar
-            %span.mail-desc Just see the my admin!
-            %span.time 9:02 AM
-  .col-md-4.col-xs-12.col-sm-6
-    .white-box
-      %h3 Chat
-      .chat-box
-        %ul.chat-list.nicescroll{:style => "overflow: hidden;", :tabindex => "5005"}
-          %li
-            .chat-image
-              = image_tag 'users/sonu.jpg', alt: 'user-img', class: 'img-circle'
-            .chat-body
-              .chat-text
-                %h4 Sonu Nigam
-                %p Hi, All!
-                %b 10.00 am
-          %li.odd
-            .chat-image
-              = image_tag 'users/genu.jpg', alt: 'Female', class: 'img-circle'
-            .chat-body
-              .chat-text
-                %h4 Genelia
-                %p Hi, How are you Sonu? ur next concert?
-                %b 10.03 am
-          %li
-            .chat-image
-              = image_tag 'users/genu.jpg', alt: 'Female', class: 'img-circle'
-            .chat-body
-              .chat-text
-                %h4 Ritesh
-                %p Hi, Sonu and Genelia,
-                %b 10.05 am
-        .row
-          .col-sm-12
-            .input-group
-              %input.form-control{:placeholder => "Say something", :type => "text"}/
-              %span.input-group-btn
-                %button.btn.btn-success{:type => "button"} Send
+  

@@ -12,7 +12,7 @@
 .row
   .col-lg-12
     .white-box
-      %h3= @user.full_name
+      %h3= @user.fullname
       %h5= @user.email
       %p= @user.created_at.strftime('%a %m-%d-%Y at %H:%M %P')
       = link_to 'Back', :back, class: 'btn btn-sm btn-warning'
