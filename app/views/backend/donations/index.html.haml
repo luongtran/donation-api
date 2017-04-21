@@ -39,7 +39,7 @@
                 %td= donation.id
                 %td= donation.user.fullname.try :humanize
                 %td= !donation.charity.nil? ? donation.charity.name.try(:humanize) : "-"
-                %td= donation.address.address_line1
+                %td= !donation.address.nil? ? donation.address.address_line1 : "-"
                 %td= !donation.package_cost.nil? ? donation.package_cost.package_size : "-"
                 %td= donation.number_of_cartons
                 %td= donation.is_fragile ? "YES" : "NO"
