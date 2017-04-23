@@ -1,3 +1,3 @@
 class CharityLocation < ApplicationRecord
-	has_many :charities
+	has_many :charities, dependent: :destroy
 end
