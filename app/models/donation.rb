@@ -6,6 +6,8 @@ class Donation < ApplicationRecord
 	belongs_to :charity
 	belongs_to :user
 
+	attr_accessor :arr
+
 	accepts_nested_attributes_for :donation_categories
 	accepts_nested_attributes_for :attachments, allow_destroy: true
 
@@ -30,6 +32,29 @@ class Donation < ApplicationRecord
 	  	end
 	  	donation.save
 	  end
+
+	  # def rand_num
+	  # 	if self.arr.nil? || self.arr.empty?
+	  # 		self.arr << rand(45)
+	  # 	else
+	  # 		num = rand(45)
+	  # 		if !is_existed(num)
+	  # 			self.arr << num
+	  # 		end
+	  # 	end
+	  # end
+
+	  # def add_num
+	  # 	self.arr = Array.new
+	  # 	until (self.arr.length >= 8)
+	  # 		rand_num
+	  # 	end
+	  # end
+
+
+	  # def is_existed(num) 
+	  # 	self.arr.any?{|item| item == num }
+	  # end
 
 	  private
 		def request_header
