@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # VALIDATIONS
   #=================================================================================================
   validates :role, inclusion: VALID_ROLES
-  validates :phone, numericality: { only_integer: true, allow_nil: true, allow_blank: true }, on: :update
+  #validates :phone, numericality: { only_integer: true, allow_nil: true, allow_blank: true }, on: :update
   validates_attachment_size :image, less_than: 10.megabytes
   validates_attachment_content_type :image, content_type: /\Aimage/
   #=================================================================================================

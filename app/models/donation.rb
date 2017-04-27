@@ -32,30 +32,7 @@ class Donation < ApplicationRecord
 	  	end
 	  	donation.save
 	  end
-
-	  # def rand_num
-	  # 	if self.arr.nil? || self.arr.empty?
-	  # 		self.arr << rand(45)
-	  # 	else
-	  # 		num = rand(45)
-	  # 		if !is_existed(num)
-	  # 			self.arr << num
-	  # 		end
-	  # 	end
-	  # end
-
-	  # def add_num
-	  # 	self.arr = Array.new
-	  # 	until (self.arr.length >= 8)
-	  # 		rand_num
-	  # 	end
-	  # end
-
-
-	  # def is_existed(num) 
-	  # 	self.arr.any?{|item| item == num }
-	  # end
-
+	  
 	  private
 		def request_header
 			{"authorization": "42f824aa22ff7db6d904c43943aef9ed", "Content-Type": "application/json"}
