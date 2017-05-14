@@ -11,10 +11,10 @@ info:
 ################################################################################
 #                  Host, Base Path, Schemes and Content Types                  #
 ################################################################################
-host: https://donation-backend.herokuapp.com
+host: donation-backend.herokuapp.com
 basePath: /api/v1
 schemes:
-  - http
+  - https
 produces:
   - application/json
 consumes:
