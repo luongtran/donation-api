@@ -7,6 +7,7 @@ class Donation < ApplicationRecord
 	belongs_to :user
 
 	attr_accessor :arr
+	after_create :sync_task
 
 	accepts_nested_attributes_for :donation_categories
 	accepts_nested_attributes_for :attachments, allow_destroy: true
@@ -18,19 +19,18 @@ class Donation < ApplicationRecord
 	  BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
 	  def sync_task
-	  	donation = self
-	  	params = request_body(donation)
-	  	logger.info(params)
-	  	headers = request_header
-	  	response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
-	  	response = JSON.parse(response.body)
-	  	if(response["success"])
-  			donation.wimo_task_id = response["task"]["id"]
-  			donation.sync_status = true
-	  	else
-	  		donation.sync_status = false
-	  	end
-	  	donation.save
+  	    params = request_body()
+  	    
+  	    headers = request_header
+  	    response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
+  	    response = JSON.parse(response.body)
+  	    if(response["success"])
+  	      self.wimo_task_id = response["task"]["id"]
+  	      self.sync_status = true
+  	    else
+  	      self.sync_status = false
+  	    end
+  	    self.save
 	  end
 	  
 	  private
@@ -38,8 +38,8 @@ class Donation < ApplicationRecord
 			{"authorization": "42f824aa22ff7db6d904c43943aef9ed", "Content-Type": "application/json"}
 		end
 
-		def request_body(donation)
-			address = donation.address
+		def request_body()
+			address = self.address
 			address_arr = address.address_line1.split(",")
 			donationParam = {
 			  ownerId: 1667,
@@ -56,11 +56,11 @@ class Donation < ApplicationRecord
 			    lng: address.lon
 			  },
 			  customer: {
-			    name: donation.user.fullname,
-			    phone: donation.user.phone
+			    name: self.user.fullname,
+			    phone: self.user.phone
 			  },
 			  pickupTask: true,
-			  totalPrice: donation.total_price,
+			  totalPrice: self.total_price,
 			  paymentTypeId: 1
 			}
 			donationParam
