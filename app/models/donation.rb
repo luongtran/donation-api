@@ -45,18 +45,18 @@ class Donation < ApplicationRecord
 
 		def request_body()
 			address = self.address
-			address_arr = address.address_line1.split(",")
+			#address_arr = address.address_line1.split(",")
 			donationParam = {
 			  ownerId: 1667,
 			  fulfillerId: 1667,
 			  details:"Donation Order",
 			  address: {
 			    address: address.address_line1,
-			    city: address.city,
-			    area: address.area,
+			    #city: address.city,
+			    #area: address.area,
 			    country: address.country,
-			    streetNumber: address_arr.empty? ? address_arr[0] : 0,
-			    streetName: address.address_line1,
+			    #streetNumber: address_arr.empty? ? address_arr[0] : 0,
+			    #streetName: address.address_line1,
 			    lat: address.lat,
 			    lng: address.lon
 			  },
