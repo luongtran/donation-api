@@ -14,7 +14,6 @@ class SyncDonationJobJob
       donation = donation.first
       params = request_body(donation)
       log.info "params #{params}"
-      logger.info(params)
       headers = request_header
       response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
       response = JSON.parse(response.body)
