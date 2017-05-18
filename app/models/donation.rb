@@ -19,11 +19,14 @@ class Donation < ApplicationRecord
 	  BASE_API_URL = 'http://be.wimo.ae:3000/api/v1/tasks'
 
 	  def sync_task
+	  	log = Logger.new('log/SyncDonationJobJob.log')
+	  	log.info("Start request WIMO");
   	    params = request_body()
   	    
   	    headers = request_header
   	    response = HTTParty.post(BASE_API_URL, body: params.to_json, headers: headers)
   	    response = JSON.parse(response.body)
+  	    log.info(response);
   	    if(response["success"])
   	      self.wimo_task_id = response["task"]["id"]
   	      self.sync_status = true
